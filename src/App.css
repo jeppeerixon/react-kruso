@@ -1,0 +1,29 @@
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+aside {
+  background-color: #f0e7dd;
+  min-width: 20vw;
+}
+
+main {
+  min-width: 30vw;
+}
+
+header {
+  background-color: #f9f3ee;
+}
+
+table {
+  border: none;
+  border-spacing: 0;
+}
+
+th {
+  background-color: #fbf8f5;
+}
+
+
