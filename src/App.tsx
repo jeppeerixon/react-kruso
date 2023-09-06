@@ -1,28 +1,17 @@
 import './App.css'
+import DevRow from './components/DevRow'
+import Header from './components/Header'
+import NavBar from './components/NavBar'
 
 function App() {
 
   return (
     <>
-      <aside>
-        <nav>
-          <ul>
-            <li>ALL</li>
-          </ul>
-        </nav>
-      </aside>
+      <NavBar />
 
       <main>
 
-        <header>
-          <h1>
-            FIND YOUR <span>EXPERT</span>
-          </h1>
-          <div>
-            <input placeholder='Search'/>
-            <button>BOKA</button>
-          </div>
-        </header>
+        <Header />
 
         <section>
           <table>
@@ -33,16 +22,8 @@ function App() {
               <th>TILLGÄNGLIGHET</th>
               <th>PRIS</th>
             </tr>
-            <tr>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-            </tr>
-            <tr>
-              <td>Centro comercial Moctezuma</td>
-              <td>Francisco Chang</td>
-              <td>Mexico</td>
-            </tr>
+            <DevRow />
+            
           </table>
         </section>
 
