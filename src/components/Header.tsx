@@ -5,7 +5,7 @@ function Header() {
           <h1>
             FIND YOUR <span>EXPERT</span>
           </h1>
-          <div>
+          <div className="searchBook">
             <input placeholder='Search'/>
             <button>BOKA</button>
           </div>
