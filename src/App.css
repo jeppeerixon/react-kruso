@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 #root {
@@ -12,10 +13,6 @@ aside {
   background-color: #f0e7dd;
   min-width: 20vw;
   height: 100vh;
-}
-
-nav {
-  
 }
 
 ul {
@@ -51,6 +48,11 @@ header {
 
 h1 {
   margin: 0;
+  font-weight: 300;
+}
+
+span {
+  font-weight: 500;
 }
 
 .searchBook {
@@ -72,7 +74,8 @@ button {
 }
 
 button:hover {
-  background-color: turquoise;
+  background-color: teal;
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.151)
 }
 
 table {
@@ -95,4 +98,31 @@ td {
   background-color: white;
 }
 
+@media (max-width: 800px) {
+  #root {
+    flex-direction: column;
+  }
+
+  aside {
+    height: 10vh;
+    width: 100vw;
+  }
+
+  main {
+    width: 100vw;
+  }
+
+  ul {
+    padding-left: 0;
+    padding-top: 0;
+    flex-direction: row;
+    margin: 0;
+  }
+
+  li {
+    padding: 1rem;
+    height: 10vh;
+  }
+
+}
 

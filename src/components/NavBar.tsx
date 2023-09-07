@@ -1,10 +1,18 @@
-import { ReactEventHandler } from "react"
+import { useState } from "react";
 
-function NavBar( { props } ) {
+interface NavBarProps {
+    props: string[]; 
+    sortBy: (category: string) => void;
+}
 
-    function handleClick(e: ReactEventHandler) {
-        e.target.style
+function NavBar( { props, sortBy }: NavBarProps ) {
 
+    const [selected, setSelected] = useState(0);
+
+    function handleClick(e: MouseEvent<HTMLLIElement, MouseEvent>) {
+        setSelected(e.target.value)
+        sortBy(e.target.innerHTML)
+        //console.dir(e.target.innerHTML)
     }
 
     return (
@@ -12,8 +20,8 @@ function NavBar( { props } ) {
             <nav>
                 <ul>
                     {
-                        props.map((cat: string) => {
-                            return (<li onClick={handleClick}>{cat}</li>)
+                        props.map((cat: string, i) => {
+                            return (<li value={i} className={selected == i ? 'activeCategory' : null} onClick={handleClick}>{cat}</li>)
                         })
                     }
                     

@@ -20,13 +20,21 @@ function App() {
     setCategories(tempArray)
   }
 
+  function sortByCategory(category: string) {
+    if (category === 'All') {
+      setDevData(data.employees)
+    } else {
+      setDevData(data.employees.filter((employee) => employee.developer.category === category));
+    }
+  }
+
   useEffect(() => {
     getCategories(data.employees)
   }, [])
 
   return (
     <>
-      <NavBar props={categories} />
+      <NavBar props={categories} sortBy={sortByCategory} />
 
       <main>
 
