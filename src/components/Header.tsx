@@ -1,4 +1,4 @@
-function Header() {
+function Header( { dev, handleBookingClick }) {
 
     return (
         <header>
@@ -7,7 +7,7 @@ function Header() {
           </h1>
           <div className="searchBook">
             <input placeholder='Search'/>
-            <button>BOKA</button>
+            <button onClick={handleBookingClick}>BOKA { dev || '' }</button>
           </div>
         </header>
     )

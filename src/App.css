@@ -7,6 +7,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 aside {
@@ -90,12 +91,31 @@ th {
   padding: 1rem;
 }
 
+tr:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
 td {
   padding: 1rem;
 }
 
 .activeCategory {
   background-color: white;
+}
+
+.bookingModal {
+  z-index: 2;
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  width: 45vw;
+  height: 65vh;
+  background-color: #f0e7dd;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 @media (max-width: 800px) {

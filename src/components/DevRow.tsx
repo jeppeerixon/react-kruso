@@ -1,10 +1,19 @@
 import { IDeveloper } from "../models/IDeveloper"
 
-function DevRow(props: IDeveloper) {
+interface DevProps {
+  props: IDeveloper; 
+  selectDev: (dev: IDeveloper) => void;
+}
+
+function DevRow( { props, selectDev }: DevProps ) {
+
+    function handleSelectClick() {
+      selectDev(props)
+    }
 
     return (
       <tbody>
-        <tr>
+        <tr onClick={handleSelectClick}>
             <td>{props.developer.title.toUpperCase()}</td>
             <td>{props.developer.experienceAmount}år</td>
             <td>{props.developer.office.city.toUpperCase()}</td>

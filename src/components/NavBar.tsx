@@ -12,7 +12,6 @@ function NavBar( { props, sortBy }: NavBarProps ) {
     function handleClick(e: MouseEvent<HTMLLIElement, MouseEvent>) {
         setSelected(e.target.value)
         sortBy(e.target.innerHTML)
-        //console.dir(e.target.innerHTML)
     }
 
     return (

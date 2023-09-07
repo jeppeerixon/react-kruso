@@ -5,11 +5,15 @@ import Header from './components/Header'
 import NavBar from './components/NavBar'
 import data from './data/developers.json'
 import { IDeveloper } from './models/IDeveloper'
+import BookingModal from './components/BookingModal'
 
 function App() {
 
   const [devData, setDevData] = useState<IDeveloper[]>(data.employees)
   const [categories, setCategories] = useState<string[]>([])
+  const [bookedDev, setBookedDev] = useState<IDeveloper>(null)
+  const [bookedTitle, setBookedTitle] = useState<string>('')
+  const [activeBooking, setActiveBooking] = useState<boolean>(false)
 
   function getCategories(theData: IDeveloper[]) {
     const tempArray: string[] = ['All']
@@ -28,6 +32,20 @@ function App() {
     }
   }
 
+  function handleSelectDev(dev: IDeveloper) {
+    setBookedDev(dev)
+    setBookedTitle(dev.developer.title.toUpperCase())
+  }
+
+  function handleBookingClick() {
+    if (bookedDev == null) {
+      setBookedTitle('GENOM ATT KLICKA PÅ UTVECKLARE')
+    } else {
+      setActiveBooking(!activeBooking)
+
+    }
+  }
+
   useEffect(() => {
     getCategories(data.employees)
   }, [])
@@ -38,7 +56,7 @@ function App() {
 
       <main>
 
-        <Header />
+        <Header dev={bookedTitle} handleBookingClick={handleBookingClick} />
 
         <section>
           <table>
@@ -53,10 +71,13 @@ function App() {
             </tbody>
               {
                 devData.map((employee: IDeveloper) => {
-                  return (<DevRow {...employee} />)
+                  return (<DevRow props={employee} selectDev={handleSelectDev}/>)
                 })
               }                        
           </table>
+          {
+            activeBooking && <BookingModal props={bookedDev} />
+          }
 
         </section>
 
