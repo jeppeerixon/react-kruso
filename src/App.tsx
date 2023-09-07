@@ -1,9 +1,14 @@
+import { useState } from 'react'
 import './App.css'
 import DevRow from './components/DevRow'
 import Header from './components/Header'
 import NavBar from './components/NavBar'
+import data from './data/developers.json'
+import { IDeveloper } from './models/IDeveloper'
 
 function App() {
+
+  const [devData, setDevData] = useState<IDeveloper[]>(data.employees)
 
   return (
     <>
@@ -22,9 +27,13 @@ function App() {
               <th>TILLGÄNGLIGHET</th>
               <th>PRIS</th>
             </tr>
-            <DevRow />
-            
+            {
+              devData.map((employee: IDeveloper) => {
+                return (<DevRow {...employee} />)
+              })
+            }                        
           </table>
+
         </section>
 
       </main>
