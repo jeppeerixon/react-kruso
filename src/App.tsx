@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './App.css'
+import './styles/App.css'
 import DevRow from './components/DevRow'
 import Header from './components/Header'
 import NavBar from './components/NavBar'
@@ -10,19 +10,9 @@ import BookingModal from './components/BookingModal'
 function App() {
 
   const [devData, setDevData] = useState<IDeveloper[]>(data.employees)
-  const [categories, setCategories] = useState<string[]>([])
   const [bookedDev, setBookedDev] = useState<IDeveloper>(null)
   const [bookedTitle, setBookedTitle] = useState<string>('')
   const [activeBooking, setActiveBooking] = useState<boolean>(false)
-
-  function getCategories(theData: IDeveloper[]) {
-    const tempArray: string[] = ['All']
-    theData.forEach((cat: IDeveloper) => {
-      if (!tempArray.includes(cat.developer.category))
-        tempArray.push(cat.developer.category)
-    })
-    setCategories(tempArray)
-  }
 
   function sortByCategory(category: string) {
     if (category === 'All') {
@@ -42,17 +32,16 @@ function App() {
       setBookedTitle('GENOM ATT KLICKA PÅ UTVECKLARE')
     } else {
       setActiveBooking(!activeBooking)
-
     }
   }
 
-  useEffect(() => {
-    getCategories(data.employees)
-  }, [])
+  function handleCloseClick() {
+    setActiveBooking(!activeBooking)
+  }
 
   return (
     <>
-      <NavBar props={categories} sortBy={sortByCategory} />
+      <NavBar props={data.employees} sortBy={sortByCategory} />
 
       <main>
 
@@ -71,12 +60,12 @@ function App() {
             </tbody>
               {
                 devData.map((employee: IDeveloper) => {
-                  return (<DevRow props={employee} selectDev={handleSelectDev}/>)
+                  return (<DevRow key={employee.developer.id} props={employee} selectDev={handleSelectDev} />)
                 })
               }                        
           </table>
           {
-            activeBooking && <BookingModal props={bookedDev} />
+            activeBooking && <BookingModal props={bookedDev} closeModal={handleCloseClick} />
           }
 
         </section>

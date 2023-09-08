@@ -1,0 +1,40 @@
+.darkBG {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+  
+  .bookingModal {
+    z-index: 2;
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    width: 45vw;
+    height: 65vh;
+    background-color: white;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .closeBtn {
+    margin-right: 1rem;
+  }
+
+  @media (max-width: 850px) {
+
+    .bookingModal {
+        top: 15%;
+        right: 15%;
+        width: 75vw;
+        height: 65vh;
+    }
+
+  }

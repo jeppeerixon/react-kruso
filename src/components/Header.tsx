@@ -1,3 +1,5 @@
+import '../styles/Header.css'
+
 function Header( { dev, handleBookingClick }) {
 
     return (
