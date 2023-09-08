@@ -39,13 +39,17 @@ function App() {
     setActiveBooking(!activeBooking)
   }
 
+  function handleSearch(text: string) {
+    setDevData(data.employees.filter((employee) => employee.developer.title.toLowerCase().includes(text)))
+  }
+
   return (
     <>
       <NavBar props={data.employees} sortBy={sortByCategory} />
 
       <main>
 
-        <Header dev={bookedTitle} handleBookingClick={handleBookingClick} />
+        <Header dev={bookedTitle} handleBookingClick={handleBookingClick} handleSearch={handleSearch} />
 
         <section>
           <table>
