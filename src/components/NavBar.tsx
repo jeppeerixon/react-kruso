@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import '../styles/NavBar.css'
 import { IDeveloper } from "../models/IDeveloper";
+import { ICategory } from "../models/ICategory";
 
 interface NavBarProps {
     props: IDeveloper[]; 
@@ -10,7 +11,7 @@ interface NavBarProps {
 function NavBar( { props, sortBy }: NavBarProps ) {
 
     const [selected, setSelected] = useState(0);
-    const [categories, setCategories] = useState<string[]>([])
+    const [categories, setCategories] = useState<ICategory[]>([])
 
     function handleClick(e: MouseEvent<HTMLLIElement, MouseEvent>) {
         setSelected(e.target.value)
@@ -19,13 +20,13 @@ function NavBar( { props, sortBy }: NavBarProps ) {
 
     //måste gå att göra på bättre sätt !?
     function getCategories(theData: IDeveloper[]) {
-        let tempArray: [] = [];
+        let tempArray: ICategory[] = [];
         theData.map(dev => {
-          const found = tempArray.find(check => check.category === dev.developer.category)
+          const found = tempArray.find((check: ICategory) => check.category === dev.developer.category)
           if (found) {
             found.quantity ++;
           } else {
-              let category = dev.developer.category
+              const category = dev.developer.category
               const updatedCategories = [...tempArray, {category, quantity: 1}]
               tempArray = updatedCategories;    
           }
@@ -47,7 +48,7 @@ function NavBar( { props, sortBy }: NavBarProps ) {
             <nav>
                 <ul>
                     {
-                        categories.map((cat , i) => {
+                        categories.map((cat: ICategory , i) => {
                             return (
                                 <li value={i} key={i} className={selected == i ? 'activeCategory' : null} id={cat.category} onClick={handleClick}>
                                     {cat.category.toUpperCase()}
